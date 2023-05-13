@@ -1,8 +1,9 @@
+import datetime
 from enum import Enum
 
 class Breed(Enum):
-    RHODE_ISLAND_RED = "Rhode Island Red"
-    LEGBORN = "Leghorn"
+    BUFF_ORPINGTON = "Buff Orpington"
+    PLYMOUTH_ROCK = "Plymouth Rock"
     # Add more breeds as needed
 
 class FeatherDensity(Enum):
@@ -13,8 +14,8 @@ class FeatherDensity(Enum):
 
 class Chicken:
     BREED_SCORES = {
-        Breed.RHODE_ISLAND_RED: 5,
-        Breed.LEGBORN: 3,
+        Breed.BUFF_ORPINGTON: 5,
+        Breed.PLYMOUTH_ROCK: 3,
         # Add scores for more breeds as needed
     }
     
@@ -82,6 +83,21 @@ class Chicken:
         return health_score
 
 # Example usage
-chicken1 = Chicken(5, Breed.RHODE_ISLAND_RED, "Clean", "White", FeatherDensity.HIGH, "Red", True, True, "Friendly")
+chicken1 = Chicken(5, Breed.BUFF_ORPINGTON, "Clean", "White", FeatherDensity.HIGH, "Red", True, True, "Friendly")
 health_score = chicken1.estimate_health()
-print(f"Chicken 1 health score: {health_score}")
+
+# Get current date and time
+current_time = datetime.datetime.now()
+
+# Format the date and time as a string
+time_string = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# Create a string with the health score and date/time
+output_string = f"Chicken 1 health score: {health_score} ({time_string})"
+
+# Save the output string to a text file
+with open("chicken_health_log.txt", "a") as f:
+    f.write(output_string + "\n")
+
+# Print the output string to the console
+print(output_string)
